@@ -90,6 +90,7 @@ $$
 $$
 
 ##**Sistema não Linear: Exemplo 2**
+
 O sistema não linear descrito pela equação de diferenças
 
 $$
@@ -140,6 +141,7 @@ $$
 
 
 ##**Sistema não Linear: Drone No Webots**
+
 Para simular com um dado quase real, vamos simular a resposta de um Drone de quatro motores no Webots(Crazyflie) e verificar se a nossa rede consegue aprender a dinâmica de um sistema real, assim, vamos definir a entrada como sendo um valor de velocidade angular direto, e a saída a posição $z$ do drone em tempo real.
 
 
