@@ -139,6 +139,9 @@ $$
  \end{cases}
  $$
 
+![Simulação Webots](pendulo_simples.png)
+*Figura 2: Simulação de Pêndulo Simples Realizada no p5.js com equação diferencial não linearizada*
+
 
 
 ##**Sistema não Linear: Drone No Webots**
@@ -191,4 +194,4 @@ $$
 
 
 ![Simulação Webots](sim_webots.png)
-*Figura 1: Simulação de Drone no Software Webots*
+*Figura 2: Simulação de Drone no Software Webots*
