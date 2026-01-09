@@ -141,7 +141,7 @@ $$
 
 ![Simulação Webots](pendulo_simples.png)
 
-*Figura 2: Simulação de Pêndulo Simples Realizada no p5.js com equação diferencial não linearizada, disponibilizada no meu próprio github*
+*Figura 1: Simulação de Pêndulo Simples Realizada no p5.js com equação diferencial não linearizada, disponibilizada no meu próprio github*
 
 
 
