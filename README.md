@@ -62,7 +62,7 @@ $$
 onde $\mathbf{w}$ é o vetor de pesos da rede, e a lei de formação da matriz $\mathbf{\Phi}$ é:
 
 $$
-{\Phi}[k,i] = \Phi({ \frac{-||\mathbf{U}[k] - \mathbf{Z}_i||_2^2}{2 \sigma_i^2} })
+{\Phi}[k,i] = \Phi_{\sigma_i}(\mathbf{U}[k] - \mathbf{Z}_i)
 $$
 
 o vetor de pesos ótimo para pode ser encontrado pela solução de mínimos quadrados, então podemos usá-la para fazer o treinamento, assim definimos a função de custo
@@ -81,4 +81,10 @@ assim podemos reconstruir finalmente a saída do sistema como
 
 $$
 \mathbf{y}_{est} = \mathbf{\Phi}(\mathbf{U}) \mathbf{w}_{otm}
+$$
+
+a função de base escolhida para as implementações foi a inversa multiquadratica, dada por
+
+$$
+\phi_{\sigma}(\mathbf{r}) = \frac{1}{\sqrt{1 + \frac{||\mathbf{r}||_2^2}{\sigma^2}}}
 $$
