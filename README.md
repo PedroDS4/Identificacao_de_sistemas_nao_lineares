@@ -88,3 +88,104 @@ a função de base escolhida para as implementações foi a inversa multiquadrat
 $$
 \phi_{\sigma}(\mathbf{r}) = \frac{1}{\sqrt{1 + \frac{||\mathbf{r}||_2^2}{\sigma^2}}}
 $$
+
+##**Sistema não Linear: Exemplo 2**
+O sistema não linear descrito pela equação de diferenças
+
+$$
+y[k+1] = 0.3y[k] + 0.6y[k-1] + 0.6 sin(πu[k]) +\frac{0.4 sin(3πu[k])}{5.5} + e[k]
+$$
+
+é descrito no artigo [1], onde $e[k]$ representa um ruído aleatório, que nesse caso será modelado como ruído AWGN.
+
+
+
+##**Sistema não Linear: Pêndulo Simples**
+
+ Para simular um sistema não linear real, o pêndulo, vamos utilizar a equação física e discretizá-la
+ Então a equação física é dada por
+
+ $$
+\ddot{\theta}(t) = -\frac{g}{L} sin(\theta(t)) + u(t)
+ $$
+
+então fazendo uma substituição de variáveis
+
+ $$
+ \begin{cases}
+\dot{\theta}(t) = p(t) \\
+\dot{p(t)} = -\frac{g}{L} sin(\theta(t)) + u(t)
+\end{cases}
+ $$
+
+aplicando o método de euler para resolver a equação
+
+ $$
+ \begin{cases}
+ p(t + \Delta t) = p(t) + \Delta t (-\frac{g}{L} sin(\theta(t)) + u(t))  \\
+\theta(t + \Delta t) = \theta(t) + \Delta t \cdot p(t)
+ \end{cases}
+ $$
+
+
+ discretizando essa equação, temos
+
+$$
+ \begin{cases}
+ p[k + 1] = p[k] + h (-\frac{g}{L} sin(\theta[k]) + u[k]) \\
+\theta[k+1] = \theta[k] + h \cdot p[k]
+ \end{cases}
+ $$
+
+
+
+##**Sistema não Linear: Drone No Webots**
+Para simular com um dado quase real, vamos simular a resposta de um Drone de quatro motores no Webots(Crazyflie) e verificar se a nossa rede consegue aprender a dinâmica de um sistema real, assim, vamos definir a entrada como sendo um valor de velocidade angular direto, e a saída a posição $z$ do drone em tempo real.
+
+
+As equações diferenciais que regem o movimento vertical de um drone com quatro hélices/motores como um sistema SISO são:
+
+$$
+\begin{cases}
+\omega_1 = \omega_2 = \omega_3 = \omega_4 = \omega(t) \\
+\ddot{z}(t) = f(\dot{z}(t),z(t), \dot{\omega}(t),\omega(t))
+\end{cases}
+$$
+
+
+A força resultante no centro de massa do drone é
+
+$$
+F_{res} = -P + F_{helices}
+$$
+
+ou seja, para o drone dar partida, a força das 4 hélices precisa superar o peso do próprio drone.
+
+Além disso, pela segunda lei de Newton, em regime transiente a equação de movimento é justamente
+
+$$
+m \ddot{z}(t) = -P + F_{helices}(t)
+$$
+
+A força das hélices é a força de reação do ar devido ao motor empurrar o mesmo para baixo, e apesar de ser não linear globalmente, o sistema pode ser aproximado por um sistema linear de 2ª ordem na vizinhança do ponto de operação.
+
+Um modelo aceitável para a modelagem da força das hélices é
+
+$$
+F_{helices}(t) = K \cdot \omega(t)^2
+$$
+
+o que prova a não linearidade do sistema, e a motivação para a utilização da técnica de identificação de sistemas.
+
+Discretizando o modelo para implementação, temos ainda
+
+$$
+\begin{cases}
+\omega_1 = \omega_2 = \omega_3 = \omega_4 = \omega[k] \\
+{z}[k] = f_d(\dot{z}[k-1],z[k-2], \dot{\omega}[k],\omega[k])
+\end{cases}
+$$
+
+
+![Simulação Webots](sim_webots.png)
+*Figura 1: Simulação de Drone no Software Webots*
