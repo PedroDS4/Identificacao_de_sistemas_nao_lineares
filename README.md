@@ -143,6 +143,8 @@ $$
 
 *Figura 1: Simulação de Pêndulo Simples Realizada no p5.js com equação diferencial não linearizada, disponibilizada no meu próprio github*
 
+A simulação dos dados sintéticos descrito pelas duas equações acima se encontra no notebook: 
+Non_Linear_System_identification_study_Pedro.ipynb
 
 
 ##**Sistema não Linear: Drone No Webots**
@@ -196,3 +198,6 @@ $$
 
 ![Simulação Webots](sim_webots.png)
 *Figura 2: Simulação de Drone no Software Webots*
+
+
+A simulação dos dados reais se encontra no notebook: Semi_Real_Data_Webots_Non_Linear_System_identification_Pedro.ipynb
